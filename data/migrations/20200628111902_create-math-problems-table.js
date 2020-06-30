@@ -12,13 +12,9 @@ exports.up = function(knex) {
             tbl.string("email").notNullable();
             tbl.string("password").notNullable();
             tbl.string("api_key");
+            tbl.string("enabled");
+            tbl.string("role");
             })
-        .createTable('track_api', tbl => {
-            tbl 
-                .string("email");
-            tbl
-                .string("usage_date");
-        })
         .createTable('add_math_problems', tbl => {
             tbl
                 .increments();
