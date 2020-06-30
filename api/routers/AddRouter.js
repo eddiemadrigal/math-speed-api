@@ -19,6 +19,21 @@ router.get('/view', (req, res) => {
         })
 });
 
+// api key required to view objects
+router.get('/random', (req, res) => {
+    const par_api_key = req.query.api_key;
+    AddProblems.get(par_api_key)
+        .then(obj => {
+            // console.log("count: ", typeof(obj.length))
+            let ranEl = Math.round(Math.random() * obj.length) - 1;
+            console.log("random el val: ", ranEl);
+            res.status(200).json(obj[ranEl])
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'unable to retrieve math problems'})
+        })
+});
+
 // protected
 router.post('/add', checkAuth, (req, res) => {
     const data = req.body;
