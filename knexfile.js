@@ -26,23 +26,18 @@ module.exports = {
   },
 
   production: {
-    client: 'pg',
-    connection: {
-      host: 'localhost',
-      database: 'math-speed-dev',
-      user: process.env.PG_USERNAME,
-      password: process.env.PG_PASSWORD
-    },
+    client: "postgresql",
+    connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
-      directory: '.data/migrations',
-      tableName: 'knex_migrations'
+      directory: "./data/migrations",
+      tableName: "knex_migrations",
     },
     seeds: {
-      directory: 'data/seeds'
+      directory: "./data/seeds",
     },
   },
 
