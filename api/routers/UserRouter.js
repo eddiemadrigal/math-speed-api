@@ -31,6 +31,7 @@ router.post('/signup', (req, res, next) => {  //  /api/user/signup
                     message: 'Duplicate email address exists'
                 })
             } else {
+                const API_key = generateAPI_key();
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     if (err) {
                         return res.status(500).json({
@@ -39,7 +40,8 @@ router.post('/signup', (req, res, next) => {  //  /api/user/signup
                     } else {
                         User.addUser({
                             email: req.body.email,
-                            password: hash
+                            password: hash,
+                            api_key: API_key
                         })
                             .then(user => {
                                 res.status(201).json(user)
@@ -97,5 +99,14 @@ router.post('/login', (req, res) => {
             })
         })
 })
+
+function generateAPI_key() { 
+    var d = new Date().getTime(); 
+    return 'xxxxxxxx-xxxx-1999-e&emxxx-xxxxxxxxxxxx'.replace(/[x]/g, function(c) { 
+        let r = Math.random() * 16; 
+        r = (d + r)%16 | 0;  
+        return (r.toString(16)); 
+    });
+}
 
 module.exports = router;
