@@ -1,3 +1,5 @@
+//  /api/addproblems
+
 const express = require('express');
 const router = express();
 router.use(express.json());
@@ -10,6 +12,9 @@ router.get('/', (req, res) => {
     AddProblems.get()
         .then(obj => {
             res.status(200).json(obj)
+        })
+        .catch(err => {
+            res.status(500).json({ message: 'unable to retrieve math problems'})
         })
 });
 
