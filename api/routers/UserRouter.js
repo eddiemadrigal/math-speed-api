@@ -41,7 +41,9 @@ router.post('/signup', (req, res, next) => {  //  /api/user/signup
                         User.addUser({
                             email: req.body.email,
                             password: hash,
-                            api_key: API_key
+                            api_key: API_key,
+                            enabled: req.body.enabled,
+                            role: req.body.role
                         })
                             .then(user => {
                                 res.status(201).json(user)
@@ -102,7 +104,7 @@ router.post('/login', (req, res) => {
 
 function generateAPI_key() { 
     var d = new Date().getTime(); 
-    return 'xxxxxxxx-xxxx-1999-e&emxxx-xxxxxxxxxxxx'.replace(/[x]/g, function(c) { 
+    return 'xxxxxxxx-xxxx-1999-eemxxxx-xxxxxxxxxxxx'.replace(/[x]/g, function(c) { 
         let r = Math.random() * 16; 
         r = (d + r)%16 | 0;  
         return (r.toString(16)); 

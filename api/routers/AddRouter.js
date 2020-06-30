@@ -7,9 +7,10 @@ const checkAuth = require('../../auth/check_auth');
 
 const AddProblems = require('../models/AddModel');
 
-// unprotected
-router.get('/', (req, res) => {
-    AddProblems.get()
+// api key required to view objects
+router.get('/view', (req, res) => {
+    const par_api_key = req.query.api_key;
+    AddProblems.get(par_api_key)
         .then(obj => {
             res.status(200).json(obj)
         })

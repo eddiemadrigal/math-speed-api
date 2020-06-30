@@ -6,8 +6,16 @@ module.exports = {
     add,
 }
 
-function get() {
-    return db("add_math_problems");
+async function get(api_key) {
+    let user = await db('users').where({
+        api_key,
+        enabled: "true"
+    }).select('*').first();
+    if (user) {
+        return db("add_math_problems");
+    } else {
+        return "Auth failed";
+    }
 }
 
 async function add(data) {

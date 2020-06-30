@@ -17,6 +17,8 @@ exports.up = function(knex) {
             })
         .createTable('track_api', tbl => {
             tbl 
+                .string("api_key");
+            tbl
                 .string("email");
             tbl
                 .string("usage_date");
