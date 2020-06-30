@@ -15,6 +15,12 @@ exports.up = function(knex) {
             tbl.string("enabled");
             tbl.string("role");
             })
+        .createTable('track_api', tbl => {
+            tbl 
+                .string("email");
+            tbl
+                .string("usage_date");
+        })
         .createTable('add_math_problems', tbl => {
             tbl
                 .increments();
@@ -100,6 +106,7 @@ exports.up = function(knex) {
 exports.down = function(knex) {
     return knex.schema 
         .dropTableIfExists('users')
+        .dropTableIfExists('track_api')
         .dropTableIfExists('add_math_problems')
         .dropTableIfExists('sub_math_problems')
         .dropTableIfExists('mul_math_problems')
