@@ -1,7 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const server = express();
+var cors = require('cors')
 const apiRouter = require('./api/routers');
+server.use(cors());
 
 server.get('/', (req, res) => {
     res.status(200).json({ message: "API is up ..." })
