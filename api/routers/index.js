@@ -3,6 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const AddRouter = require('./AddRouter');
+const SubRouter = require('./SubRouter');
 const UserRouter = require('./UserRouter');
 
 router.get('/', (req, res) => {
@@ -10,6 +11,7 @@ router.get('/', (req, res) => {
 });
 
 router.use('/addproblems', AddRouter); // /api/addproblems
+router.use('/subproblems', SubRouter); // /api/subproblems
 
 router.use('/user', UserRouter) //  /api/user
 
